@@ -28,7 +28,7 @@ export function Layout() {
         <Outlet />
       </main>
       <footer className="mx-auto max-w-3xl px-4 pb-10 text-xs text-muted-foreground sm:px-6">
-        © {new Date().getFullYear()} {profile.name.toLowerCase()}
+        © {new Date().getFullYear()} | {profile.name.toLowerCase()} | inspired by: importdhruv.in
       </footer>
     </>
   );
