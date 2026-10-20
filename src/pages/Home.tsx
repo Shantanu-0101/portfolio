@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { FileText, Mail } from "lucide-react";
+import { ArrowUpRight, FileText, Mail } from "lucide-react";
 import { about, experience, profile, projects } from "../content";
 import { posts } from "../blog";
 import { Section } from "../components/Section";
 import { ExperienceItem } from "../components/ExperienceItem";
 import { GithubIcon, LinkedinIcon } from "../components/Icons";
+import { PostLink } from "./Blog";
 
 const linkClass = "text-foreground transition-colors hover:text-foreground/70";
 
@@ -75,9 +76,10 @@ export function Home() {
           <ul className="space-y-2 sm:space-y-3">
             {posts.slice(0, 5).map((post) => (
               <li key={post.slug} className="text-sm sm:text-base">
-                <Link to={`/blog/${post.slug}`} className={linkClass}>
+                <PostLink post={post} className={`${linkClass} inline-flex items-center gap-0.5`}>
                   {post.title.toLowerCase()}
-                </Link>
+                  {post.url && <ArrowUpRight className="size-3.5 text-muted-foreground" />}
+                </PostLink>
               </li>
             ))}
             <li className="pt-1 text-xs sm:text-sm">

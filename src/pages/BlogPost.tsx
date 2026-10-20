@@ -9,7 +9,7 @@ import { NotFound } from "./NotFound";
 
 export function BlogPost() {
   const { slug } = useParams();
-  const post = posts.find((p) => p.slug === slug);
+  const post = posts.find((p) => !p.url && p.slug === slug);
 
   useEffect(() => {
     if (!post) return;

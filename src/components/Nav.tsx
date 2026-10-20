@@ -39,18 +39,18 @@ export function Nav() {
         hidden ? "-translate-y-20 opacity-0" : "opacity-100"
       }`}
     >
-      <div className="flex items-center gap-0.5 rounded-full border border-border bg-background/80 py-1 pl-2 pr-1 shadow-sm backdrop-blur-md sm:gap-1 sm:pl-3">
+      <div className="flex items-center gap-0 rounded-full border border-border bg-background/80 py-1 pl-1.5 pr-1 min-[400px]:gap-0.5 min-[400px]:pl-2 shadow-sm backdrop-blur-md sm:gap-1 sm:pl-3">
         {items.map((item) => (
           <Link
             key={item.id}
             to={`/#${item.id}`}
             onClick={(e) => jump(e, item.id)}
-            className="rounded-full px-1.5 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground sm:px-2.5 sm:text-sm"
+            className="rounded-full px-1 py-1 text-xs min-[400px]:px-1.5 text-muted-foreground transition-colors hover:text-foreground sm:px-2.5 sm:text-sm"
           >
             {item.label}
           </Link>
         ))}
-        <span className="mx-1 h-4 w-px bg-border" aria-hidden="true" />
+        <span className="mx-0.5 h-4 w-px min-[400px]:mx-1 bg-border" aria-hidden="true" />
         <ThemeToggle />
       </div>
     </nav>

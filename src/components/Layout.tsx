@@ -3,14 +3,17 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Nav } from "./Nav";
 import { profile } from "../content";
 
+// We handle scrolling ourselves; stop the browser from restoring the old position on load.
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
 // Scroll to the #hash after navigating, or to the top on a new page.
 function ScrollManager() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
     if (hash) {
-      document.getElementById(hash.slice(1))?.scrollIntoView();
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "instant" });
     } else {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [pathname, hash]);
   return null;

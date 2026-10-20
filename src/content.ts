@@ -73,3 +73,37 @@ export const projects: Project[] = [
     url: "https://play.google.com/store/apps/details?id=com.shantanupanchal.remindyou",
   },
 ];
+
+// Posts published elsewhere (Hashnode, Medium...). They show up in the
+// writing section and on /blog, and open the original article.
+export type ExternalPost = {
+  title: string;
+  date: string; // YYYY-MM-DD
+  summary: string;
+  tags: string[];
+  url: string;
+};
+
+export const externalPosts: ExternalPost[] = [
+  {
+    title: "From Python to JavaScript: What Surprised Me Most as an AI Student",
+    date: "2026-08-02",
+    summary: "after two years of python for ai and data science, what stood out when i moved to javascript.",
+    tags: ["python", "javascript"],
+    url: "https://shantanupanchal.hashnode.dev/from-python-to-javascript-what-surprised-me-most-as-an-ai-student",
+  },
+  {
+    title: "I Trained a Word2Vec Model on Friends TV Show Dialogues",
+    date: "2026-05-24",
+    summary: "learning word embeddings by training word2vec on every line of friends.",
+    tags: ["nlp", "word2vec"],
+    url: "https://shantanupanchal.hashnode.dev/i-trained-a-word2vec-model-on-friends-tv-show-dialogues",
+  },
+  {
+    title: "What is a Perceptron in Deep Learning?",
+    date: "2026-01-01",
+    summary: "the basic building block of neural networks, explained in simple terms.",
+    tags: ["deep-learning", "neural-networks"],
+    url: "https://shantanupanchal.hashnode.dev/what-is-perceptron-in-deep-learning",
+  },
+];

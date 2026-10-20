@@ -1,5 +1,7 @@
-// Loads every markdown file in src/content/blog at build time.
-// Files starting with "_" are ignored (use them for drafts/templates).
+// Loads every markdown file in src/content/blog at build time, plus the
+// external posts from content.ts. Files starting with "_" are ignored.
+
+import { externalPosts } from "./content";
 
 export type Post = {
   slug: string;
@@ -8,6 +10,7 @@ export type Post = {
   summary: string;
   tags: string[];
   content: string;
+  url?: string; // set for posts hosted elsewhere
 };
 
 const files = import.meta.glob<string>("./content/blog/*.md", {
@@ -44,10 +47,26 @@ function parse(path: string, raw: string): Post {
   };
 }
 
-export const posts: Post[] = Object.entries(files)
+const localPosts = Object.entries(files)
   .filter(([path]) => !path.split("/").pop()!.startsWith("_"))
-  .map(([path, raw]) => parse(path, raw))
-  .sort((a, b) => b.date.localeCompare(a.date));
+  .map(([path, raw]) => parse(path, raw));
+
+const remotePosts: Post[] = externalPosts.map((p) => ({
+  ...p,
+  slug: p.url,
+  content: "",
+}));
+
+export const posts: Post[] = [...localPosts, ...remotePosts].sort((a, b) =>
+  b.date.localeCompare(a.date),
+);
+
+export function hostOf(url: string): string {
+  const host = new URL(url).hostname;
+  if (host.endsWith("hashnode.dev")) return "hashnode";
+  if (host.includes("medium.com")) return "medium";
+  return host.replace(/^www\./, "");
+}
 
 export function formatDate(date: string): string {
   const [y, m, d] = date.split("-").map(Number);
