@@ -3,7 +3,7 @@
 export const profile = {
   name: "Shantanu Panchal",
   firstName: "Shantanu",
-  photo: "/profile.png",
+  photo: "/profile.jfif",
   resume: "/resume.pdf",
   // Shown as "x@gmail.com where x = ..." to keep scrapers away.
   emailUser: "shantanupanchal.dev",
